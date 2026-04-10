@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://cf5ru3cuuapxx"]
 
+[ext_resource type="Script" uid="uid://ctrevijkbgqct" path="res://scripts/game_manager.gd" id="1_gee14"]
 [ext_resource type="PackedScene" uid="uid://cfjq0sh6u3dyt" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://03gs7kvtamk6" path="res://assets/sprites/world_tileset.png" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://dcjjb2kwb6own" path="res://scenes/platform.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://vgj3tlaen3pe" path="res://scenes/coin.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://c8p4x83wic5dj" path="res://scenes/killzone.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://dpfbebx6544oc" path="res://scenes/slime.tscn" id="6_p57ef"]
+[ext_resource type="FontFile" uid="uid://dvdg4hkfg7cy7" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="7_u5sy4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("1_yqjtg")
@@ -213,6 +215,19 @@ _data = {
 
 [node name="Game" type="Node2D" unique_id=2033003606]
 
+[node name="GameManager" type="Node" parent="." unique_id=869472990]
+unique_name_in_owner = true
+script = ExtResource("1_gee14")
+
+[node name="ScoreLabel" type="Label" parent="GameManager" unique_id=1370156079]
+offset_left = 316.0
+offset_top = -56.0
+offset_right = 465.0
+offset_bottom = -33.0
+theme_override_fonts/font = ExtResource("7_u5sy4")
+theme_override_font_sizes/font_size = 8
+text = "You collected x coins"
+
 [node name="TileMap" type="TileMap" parent="." unique_id=1196784624]
 tile_set = SubResource("TileSet_lbhrr")
 format = 2
@@ -266,8 +281,21 @@ position = Vector2(386, 9)
 libraries/ = SubResource("AnimationLibrary_iywne")
 autoplay = &"move"
 
-[node name="slime" parent="." unique_id=504220466 instance=ExtResource("6_p57ef")]
+[node name="Enemies" type="Node" parent="." unique_id=1596982237]
+
+[node name="slime" parent="Enemies" unique_id=504220466 instance=ExtResource("6_p57ef")]
 position = Vector2(58, -12)
 
-[node name="slime2" parent="." unique_id=2023036774 instance=ExtResource("6_p57ef")]
+[node name="slime2" parent="Enemies" unique_id=2023036774 instance=ExtResource("6_p57ef")]
 position = Vector2(264, -14)
+
+[node name="Labels" type="Node" parent="." unique_id=1054099789]
+
+[node name="Label" type="Label" parent="Labels" unique_id=1844712015]
+offset_left = -48.0
+offset_top = -52.0
+offset_right = 48.0
+offset_bottom = -29.0
+theme_override_fonts/font = ExtResource("7_u5sy4")
+theme_override_font_sizes/font_size = 8
+text = "Space to jump"
